@@ -70,6 +70,11 @@
             color: white;
         }
 
+        button.copy {
+            background: #ff9800;
+            color: white;
+        }
+
         button.action:active {
             opacity: 0.8;
         }
@@ -77,12 +82,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>тест шифровщика (@amer_ua)</h1>
+        <h1>Тестовий шифровщик (@amer_ua)</h1>
         <input type="text" id="textInput" placeholder="Введіть текст">
         <div class="actions">
             <button class="action encrypt" onclick="encryptText()">Зашифрувати</button>
             <button class="action decrypt" onclick="decryptText()">Розшифрувати</button>
             <button class="action clear" onclick="clearText()">Очистити</button>
+            <button class="action copy" onclick="copyText()">Копіювати</button>
         </div>
         <textarea id="outputText" placeholder="Результат з'явиться тут..." readonly></textarea>
     </div>
@@ -110,6 +116,17 @@
         function clearText() {
             document.getElementById('textInput').value = '';
             document.getElementById('outputText').value = '';
+        }
+
+        function copyText() {
+            const outputText = document.getElementById('outputText');
+            if (outputText.value.trim() === "") {
+                alert("Немає тексту для копіювання!");
+                return;
+            }
+            navigator.clipboard.writeText(outputText.value)
+                .then(() => alert("Текст скопійовано!"))
+                .catch(err => alert("Помилка копіювання: " + err));
         }
     </script>
 </body>
