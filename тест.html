@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ШИФРОВЩИК (@amer_ua)</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
+            margin: 0;
             font-family: 'Press Start 2P', cursive;
+            background: radial-gradient(circle, #0d1117, #000000);
+            color: #00ffcc;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background: radial-gradient(circle, #0d1117, #000000);
-            color: #00ffcc;
             overflow: hidden;
-            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
         }
 
         .container {
             text-align: center;
             background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 255, 204, 0.5);
         }
@@ -32,6 +30,8 @@
             font-size: 24px;
             margin-bottom: 20px;
             animation: neonGlow 1.5s infinite alternate;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
         }
 
         @keyframes neonGlow {
@@ -52,7 +52,6 @@
             border-radius: 8px;
             background-color: #1e1e1e;
             color: #00ffcc;
-            text-shadow: none;
         }
 
         textarea {
@@ -107,30 +106,17 @@
             color: #f39c12;
             box-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12;
         }
-
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('cyber-grid.gif') no-repeat center center fixed;
-            background-size: cover;
-            z-index: -1;
-            opacity: 0.3;
-        }
     </style>
 </head>
 <body>
-    <div class="background"></div>
     <div class="container">
-        <h1>ШИФРОВЩИК  (@amer_ua)</h1>
-        <input type="text" id="textInput" placeholder="Введіть текст">
+        <h1>ШИФРОВЩИК(@amer_ua)</h1>
+        <input type="text" id="textInput" placeholder="Введіть текст для шифрування">
         <div class="actions">
-            <button class="action encrypt"><i class="fas fa-lock"></i> Зашифрувати</button>
-            <button class="action decrypt"><i class="fas fa-unlock"></i> Розшифрувати</button>
-            <button class="action clear"><i class="fas fa-eraser"></i> Очистити</button>
-            <button class="action copy"><i class="fas fa-copy"></i> Копіювати</button>
+            <button class="action encrypt" onclick="encryptText()">Зашифрувати</button>
+            <button class="action decrypt" onclick="decryptText()">Розшифрувати</button>
+            <button class="action clear" onclick="clearText()">Очистити</button>
+            <button class="action copy" onclick="copyText()">Копіювати</button>
         </div>
         <textarea id="outputText" placeholder="Результат з'явиться тут..." readonly></textarea>
     </div>
@@ -165,10 +151,7 @@
             if (outputText.value.trim() === "") {
                 alert("Немає тексту для копіювання!");
                 return;
-            }
-            navigator.clipboard.writeText(outputText.value)
-                .then(() => alert("Текст скопійовано!"))
-                .catch(err => alert("Помилка копіювання: " + err));
+     
         }
     </script>
 </body>
